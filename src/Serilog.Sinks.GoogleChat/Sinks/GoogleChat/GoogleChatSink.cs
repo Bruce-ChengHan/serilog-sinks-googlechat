@@ -11,21 +11,21 @@ using Serilog.Events;
 using Serilog.Formatting;
 using Serilog.Sinks.PeriodicBatching;
 
-namespace Serilog.Sinks.GoogleChat.Sinks.GoogleChat
+namespace Serilog.Sinks.GoogleChat
 {
     public class GoogleChatSink : IBatchedLogEventSink, IDisposable
     {
         private const int StringBuilderCapacity = 256;
         private readonly IReadOnlyCollection<string> _webhooks;
-        private readonly ITextFormatter _textFormatter;
         private readonly string _threadKey;
+        private readonly ITextFormatter _textFormatter;
         private readonly HttpClient _httpClient;
 
-        public GoogleChatSink(IReadOnlyCollection<string> webhooks, ITextFormatter textFormatter, string threadKey, HttpClient httpClient)
+        public GoogleChatSink(IReadOnlyCollection<string> webhooks, string threadKey, ITextFormatter textFormatter, HttpClient httpClient)
         {
             _webhooks = webhooks;
-            _textFormatter = textFormatter;
             _threadKey = threadKey;
+            _textFormatter = textFormatter;
             _httpClient = httpClient;
         }
 
